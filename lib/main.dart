@@ -37,6 +37,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  String loginAcesso = "";
+  dynamic senhaAcesso = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,37 +50,54 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const TextField(
+              Container(
+                child: const Text(
+                  'Mais Contratos',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+              TextField(
+                onChanged: (text) {
+                  loginAcesso = text;
+                },
+                //controller: loginAcesso,
                 autofocus: true,
                 keyboardType: TextInputType.text,
-                style: TextStyle(color: Colors.white, fontSize: 25),
-                decoration: InputDecoration(
+                style: const TextStyle(color: Colors.white, fontSize: 25),
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   icon: Icon(
                     Icons.person,
                     color: Colors.white,
                   ),
                   hintText: 'Login do usuário',
-                  labelStyle: TextStyle(color: Colors.black87),
+                  labelStyle: TextStyle(color: Colors.white),
                 ),
               ),
               const Divider(),
-              const TextField(
+              TextField(
+                onChanged: (text) {
+                  senhaAcesso = text;
+                },
+                //controller: senhaAcesso,
                 autofocus: true,
                 obscureText: true,
                 keyboardType: TextInputType.text,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 25,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   icon: Icon(
                     Icons.security,
                     color: Colors.white,
                   ),
                   hintText: 'Senha do usuário',
-                  labelStyle: TextStyle(color: Colors.black87),
+                  labelStyle: TextStyle(color: Colors.white),
                 ),
               ),
               const Divider(),
@@ -85,7 +105,8 @@ class _LoginState extends State<Login> {
                 height: 60.0,
                 child: TextButton(
                   onPressed: () => {
-                    print('pressionado'),
+                    print(loginAcesso),
+                    print(senhaAcesso),
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
