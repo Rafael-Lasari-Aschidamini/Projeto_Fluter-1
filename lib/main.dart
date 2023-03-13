@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop/http.dart';
 import 'package:test/expect.dart';
+import 'package:flutter/material.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -12,6 +13,16 @@ class ExpensesApp extends StatefulWidget {
 }
 
 class _ExpensesAppState extends State<ExpensesApp> {
+  /**
+   * recebe dentro de um map: ds_login e ds_senha 
+   * retorno:
+   *  se statusCode for 200 é sucesso, se n for é falha
+   *
+   * login utilizavel:
+   * bob, 1234
+   * 
+   */
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,15 +50,19 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String loginAcesso = "";
-  dynamic senhaAcesso = "";
-  FloatingLabelBehavior? floatingLabelBehavior;
+  String loginAcesso = '';
+  dynamic senhaAcesso = '';
 
-  // teste() {
-  //   RotasHttp.getLogin(login: loginAcesso, senha: senhaAcesso);
+  void exibirSnackbar() {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Text Message')));
+  }
 
-  //   // snackbar
-  //   // alerta
+  //   nackbar
+  //   alerta
+  // quando suceso azul
+  // erro vermelho
+  // isso o fundo, o texto vai ser em branco, quando usar o snackbar
   // }
 
   @override
@@ -111,9 +126,6 @@ class _LoginState extends State<Login> {
                         },
                         autofocus: true,
                         keyboardType: TextInputType.text,
-                        style: const TextStyle(
-                          color: Colors.orange,
-                        ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           icon: Icon(
@@ -121,7 +133,7 @@ class _LoginState extends State<Login> {
                             color: Colors.orange,
                           ),
                           label: Text(
-                            "Login",
+                            'Usuário',
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
@@ -137,22 +149,42 @@ class _LoginState extends State<Login> {
                         autofocus: true,
                         obscureText: true,
                         keyboardType: TextInputType.text,
-                        style: const TextStyle(
-                          color: Colors.orange,
-                        ),
                         decoration: const InputDecoration(
                           icon: Icon(
                             Icons.security,
                             color: Colors.orange,
                           ),
                           label: Text(
-                            "Senha",
+                            'Senha',
                             style: TextStyle(color: Colors.grey),
                           ),
                           border: InputBorder.none,
                         ),
                       ),
-                    )
+                    ),
+                    // TextButton.icon(
+                    //   onPressed: () {
+                    //     print(loginAcesso);
+                    //     print(senhaAcesso);
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //       backgroundColor: Colors.white,
+                    //       fixedSize: const Size(120, 50),
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(50))),
+                    //   label: const Text(
+                    //     "Entrar",
+                    //     style: TextStyle(
+                    //       color: Colors.orange,
+                    //       fontSize: 15,
+                    //       backgroundColor: Colors.white,
+                    //     ),
+                    //   ),
+                    //   icon: const Icon(
+                    //     Icons.logout_outlined,
+                    //     color: Colors.orange,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -165,23 +197,37 @@ class _LoginState extends State<Login> {
                   height: 60.0,
                   child: Container(
                     width: 500,
-                    child: TextButton(
+                    child: TextButton.icon(
                       onPressed: () {
-                        print(loginAcesso);
-                        print(senhaAcesso);
+                        // Map<String, dynamic> entrar = {
+                        //   'usuario': loginAcesso,
+                        //   'senha': senhaAcesso,
+                        // };
+
+                        Map<String, dynamic> mapRetorno =
+                            RotasHttp.getLogin(loginAcesso, senhaAcesso);
+                        int status = mapRetorno['statusCode'];
+                        String testMessage = mapRetorno['message'];
+
+                        print(status);
+                        print(testMessage);
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           fixedSize: const Size(120, 50),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50))),
-                      child: const Text(
-                        "Acessar",
+                      label: const Text(
+                        "Entrar",
                         style: TextStyle(
                           color: Colors.orange,
-                          fontSize: 20,
+                          fontSize: 15,
                           backgroundColor: Colors.white,
                         ),
+                      ),
+                      icon: const Icon(
+                        Icons.logout_outlined,
+                        color: Colors.orange,
                       ),
                     ),
                   ),
