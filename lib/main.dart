@@ -13,6 +13,7 @@ class ExpensesApp extends StatefulWidget {
 }
 
 class _ExpensesAppState extends State<ExpensesApp> {
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
   /**
    * recebe dentro de um map: ds_login e ds_senha 
    * retorno:
@@ -26,7 +27,10 @@ class _ExpensesAppState extends State<ExpensesApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Login(),
+      home: ScaffoldMessenger(
+        key: _scaffoldMessengerKey,
+        child: const Login(),
+      ),
       theme: ThemeData(
         primarySwatch: Colors.orange,
         fontFamily: 'Quicksend',
@@ -52,11 +56,6 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   String loginAcesso = '';
   dynamic senhaAcesso = '';
-
-  void exibirSnackbar() {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Text Message')));
-  }
 
   //   nackbar
   //   alerta
@@ -208,6 +207,21 @@ class _LoginState extends State<Login> {
                             RotasHttp.getLogin(loginAcesso, senhaAcesso);
                         int status = mapRetorno['statusCode'];
                         String testMessage = mapRetorno['message'];
+                        if (status == 200) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.blue,
+                              content: Text(testMessage),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(testMessage),
+                            ),
+                          );
+                        }
 
                         print(status);
                         print(testMessage);
