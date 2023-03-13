@@ -41,6 +41,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   String loginAcesso = "";
   dynamic senhaAcesso = "";
+  FloatingLabelBehavior? floatingLabelBehavior;
 
   // teste() {
   //   RotasHttp.getLogin(login: loginAcesso, senha: senhaAcesso);
@@ -52,11 +53,11 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.orange.shade400,
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Center(
-              child: Column(
+      backgroundColor: Colors.orange.shade400,
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
@@ -96,64 +97,43 @@ class _LoginState extends State<Login> {
               const SizedBox(
                 height: 24,
               ),
+              const SizedBox(
+                height: 16,
+              ),
               Card(
-                // height: 185,
-                //width: 400,
-                // decoration: BoxDecoration(
-                //   color: Colors.white,
-                //   borderRadius: BorderRadius.circular(10),
-                //   boxShadow: [
-                //   BoxShadow(
-                //     color: Colors.grey.withOpacity(0.5),
-                //     spreadRadius: 5,
-                //     blurRadius: 7,
-                //     offset: const Offset(0, 3),
-                //   ),
-                // ],
-                // ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 8,
-                  ),
-                  child: Column(
-                    children: [
-                      TextField(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                      child: TextField(
                         onChanged: (text) {
                           loginAcesso = text;
                         },
-
-                        //controller: loginAcesso,
                         autofocus: true,
                         keyboardType: TextInputType.text,
                         style: const TextStyle(
                           color: Colors.orange,
                         ),
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           icon: Icon(
                             Icons.person,
                             color: Colors.orange,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.orange,
-                            ),
-                          ),
                           label: Text(
-                            "login",
-                            style: TextStyle(color: Colors.orange),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
+                            "Login",
+                            style: TextStyle(color: Colors.grey),
                           ),
                         ),
                       ),
-                      const Divider(),
-                      TextField(
+                    ),
+                    Divider(),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                      child: TextField(
                         onChanged: (text) {
                           senhaAcesso = text;
                         },
-                        //controller: senhaAcesso,
                         autofocus: true,
                         obscureText: true,
                         keyboardType: TextInputType.text,
@@ -165,54 +145,52 @@ class _LoginState extends State<Login> {
                             Icons.security,
                             color: Colors.orange,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.orange,
-                            ),
-                          ),
                           label: Text(
                             "Senha",
-                            style: TextStyle(color: Colors.orange),
+                            style: TextStyle(color: Colors.grey),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
+                          border: InputBorder.none,
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ButtonTheme(
-                height: 60.0,
-                child: Container(
-                  width: 500,
-                  child: TextButton(
-                    onPressed: () => {
-                      print(loginAcesso),
-                      print(senhaAcesso),
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        fixedSize: const Size(120, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50))),
-                    child: const Text(
-                      "Acessar",
-                      style: TextStyle(
-                        color: Colors.orange,
-                        fontSize: 20,
-                        backgroundColor: Colors.white,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                  vertical: 16,
+                ),
+                child: ButtonTheme(
+                  height: 60.0,
+                  child: Container(
+                    width: 500,
+                    child: TextButton(
+                      onPressed: () {
+                        print(loginAcesso);
+                        print(senhaAcesso);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          fixedSize: const Size(120, 50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      child: const Text(
+                        "Acessar",
+                        style: TextStyle(
+                          color: Colors.orange,
+                          fontSize: 20,
+                          backgroundColor: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
             ],
-          )),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 }
