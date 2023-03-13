@@ -212,6 +212,10 @@ class _LoginState extends State<Login> {
                             SnackBar(
                               backgroundColor: Colors.blue,
                               content: Text(testMessage),
+                              behavior: SnackBarBehavior.floating,
+                              margin: const EdgeInsets.only(
+                                  bottom: 16, left: 16, right: 16, top: 16),
+                              // bottom: 770 bem em cima q1uando teclaso estiver fechado, caso teclado aberto da erro pois joga pra fora da tela
                             ),
                           );
                         } else {
@@ -219,6 +223,9 @@ class _LoginState extends State<Login> {
                             SnackBar(
                               backgroundColor: Colors.red,
                               content: Text(testMessage),
+                              behavior: SnackBarBehavior.floating,
+                              margin: const EdgeInsets.only(
+                                  bottom: 16, left: 16, right: 16, top: 16),
                             ),
                           );
                         }
