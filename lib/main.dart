@@ -65,7 +65,7 @@ class _LoginState extends State<Login> {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
+                    children: const [
                       Text(
                         'mais',
                         style: TextStyle(
@@ -85,7 +85,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                   Container(
-                    child: Icon(
+                    child: const Icon(
                       Icons.add,
                       size: 60,
                       color: Colors.white,
@@ -93,7 +93,7 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Card(
@@ -118,66 +118,64 @@ class _LoginState extends State<Login> {
                   ),
                   child: Column(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      TextField(
+                        onChanged: (text) {
+                          loginAcesso = text;
+                        },
+
+                        //controller: loginAcesso,
+                        autofocus: true,
+                        keyboardType: TextInputType.text,
+                        style: const TextStyle(
+                          color: Colors.orange,
                         ),
-                        child: TextField(
-                          onChanged: (text) {
-                            loginAcesso = text;
-                          },
-                          //controller: loginAcesso,
-                          autofocus: true,
-                          keyboardType: TextInputType.text,
-                          style: const TextStyle(
-                            color: Colors.black,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.person,
+                            color: Colors.orange,
                           ),
-                          decoration: const InputDecoration(
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                            icon: Icon(
-                              Icons.person,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
                               color: Colors.orange,
                             ),
-                            labelText: 'Login',
-                            hintText: 'Login',
-                            labelStyle: TextStyle(color: Colors.grey),
+                          ),
+                          label: Text(
+                            "login",
+                            style: TextStyle(color: Colors.orange),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
                       ),
                       const Divider(),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      TextField(
+                        onChanged: (text) {
+                          senhaAcesso = text;
+                        },
+                        //controller: senhaAcesso,
+                        autofocus: true,
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        style: const TextStyle(
+                          color: Colors.orange,
                         ),
-                        child: TextField(
-                          onChanged: (text) {
-                            senhaAcesso = text;
-                          },
-                          //controller: senhaAcesso,
-                          autofocus: true,
-                          obscureText: true,
-                          keyboardType: TextInputType.text,
-                          style: const TextStyle(
-                            color: Colors.black,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.security,
+                            color: Colors.orange,
                           ),
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            icon: Icon(
-                              Icons.security,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
                               color: Colors.orange,
                             ),
-                            labelText: 'Senha',
-                            hintText: 'Senha',
-                            labelStyle: TextStyle(color: Colors.grey),
+                          ),
+                          label: Text(
+                            "Senha",
+                            style: TextStyle(color: Colors.orange),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
                       )
