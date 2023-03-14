@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shop/http.dart';
 import 'package:shop/imagem.dart';
+import 'package:test/expect.dart';
+
+import 'marca_logo.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,21 +12,65 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
+Color laranjaMaisContratos = const Color.fromRGBO(255, 148, 76, 1.0);
+
 class _LoginState extends State<Login> {
   String loginAcesso = '';
   dynamic senhaAcesso = '';
 
-  //   nackbar
-  //   alerta
-  // quando suceso azul
-  // erro vermelho
-  // isso o fundo, o texto vai ser em branco, quando usar o snackbar
-  // }
+  bool _isTextFieldEmpty() {
+    return loginAcesso.isEmpty ||
+        senhaAcesso.isEmpty ||
+        loginAcesso == null ||
+        senhaAcesso == null;
+  }
+
+  verificacaoLogin() {
+    if (loginAcesso.trim().isEmpty || senhaAcesso.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Text('Campos em Branco'),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 16),
+        ),
+      );
+    } else {
+      Map<String, dynamic> mapRetorno =
+          RotasHttp.getLogin(loginAcesso, senhaAcesso);
+      int status = mapRetorno['statusCode'];
+      String testMessage = mapRetorno['message'];
+      if (status == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text(testMessage),
+            behavior: SnackBarBehavior.floating,
+            margin:
+                const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 16),
+            // bottom: 770 bem em cima q1uando teclaso estiver fechado, caso teclado aberto da erro pois joga pra fora da tela
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(testMessage),
+            behavior: SnackBarBehavior.floating,
+            margin:
+                const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 16),
+          ),
+        );
+        print(status);
+        print(testMessage);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange.shade400,
+      backgroundColor: laranjaMaisContratos,
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -31,46 +78,13 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Imagem(),
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   mainAxisSize: MainAxisSize.max,
-                //   children: [
-                //     Column(
-                //       crossAxisAlignment: CrossAxisAlignment.end,
-                //       children: const [
-                //         Text(
-                //           'mais',
-                //           style: TextStyle(
-                //               height: 0.75,
-                //               color: Colors.white,
-                //               fontSize: 60,
-                //               fontWeight: FontWeight.bold),
-                //         ),
-                //         Text(
-                //           'contratos',
-                //           style: TextStyle(
-                //               height: 0.75,
-                //               color: Colors.white,
-                //               fontSize: 60,
-                //               fontWeight: FontWeight.bold),
-                //         ),
-                //       ],
-                //     ),
-                //     Container(
-                //       child: const Icon(
-                //         Icons.add,
-                //         size: 60,
-                //         color: Colors.white,
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                // Imagem(),
+                MarcaLogo(),
+
                 const SizedBox(
                   height: 24,
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+
                 Card(
                   child: Column(
                     children: [
@@ -155,42 +169,7 @@ class _LoginState extends State<Login> {
                     child: Container(
                       width: 500,
                       child: TextButton.icon(
-                        onPressed: () {
-                          // Map<String, dynamic> entrar = {
-                          //   'usuario': loginAcesso,
-                          //   'senha': senhaAcesso,
-                          // };
-
-                          Map<String, dynamic> mapRetorno =
-                              RotasHttp.getLogin(loginAcesso, senhaAcesso);
-                          int status = mapRetorno['statusCode'];
-                          String testMessage = mapRetorno['message'];
-                          if (status == 200) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Colors.blue,
-                                content: Text(testMessage),
-                                behavior: SnackBarBehavior.floating,
-                                margin: const EdgeInsets.only(
-                                    bottom: 16, left: 16, right: 16, top: 16),
-                                // bottom: 770 bem em cima q1uando teclaso estiver fechado, caso teclado aberto da erro pois joga pra fora da tela
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Colors.red,
-                                content: Text(testMessage),
-                                behavior: SnackBarBehavior.floating,
-                                margin: const EdgeInsets.only(
-                                    bottom: 16, left: 16, right: 16, top: 16),
-                              ),
-                            );
-                          }
-
-                          print(status);
-                          print(testMessage);
-                        },
+                        onPressed: verificacaoLogin,
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             fixedSize: const Size(120, 50),

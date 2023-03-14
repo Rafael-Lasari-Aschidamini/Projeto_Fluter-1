@@ -8,9 +8,10 @@ class Imagem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 205,
+      height: 30,
+
       child: const Image(
-        image: AssetImage('assets/splash.jpg'),
+        image: AssetImage('assets/icon.png'),
         fit: BoxFit.cover,
       ),
 
