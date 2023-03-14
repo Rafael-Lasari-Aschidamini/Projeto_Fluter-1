@@ -32,7 +32,7 @@ class MarcaLogo extends StatelessWidget {
         ),
         Container(
           child: const Icon(
-            Icons.add,
+            Icons.keyboard_double_arrow_right,
             size: 60,
             color: Colors.white,
           ),

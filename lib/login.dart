@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shop/http.dart';
-import 'package:shop/imagem.dart';
-import 'package:test/expect.dart';
-
 import 'marca_logo.dart';
 
 class Login extends StatefulWidget {
@@ -61,8 +58,6 @@ class _LoginState extends State<Login> {
                 const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 16),
           ),
         );
-        print(status);
-        print(testMessage);
       }
     }
   }
