@@ -5,39 +5,58 @@ class MarcaLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: const [
-            Text(
-              'mais',
-              style: TextStyle(
-                  height: 0.75,
-                  color: Colors.white,
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold),
+    return SizedBox(
+      width: double.infinity,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 60.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: const [
+                Text(
+                  'mais',
+                  style: TextStyle(
+                    height: 0.75,
+                    color: Colors.white,
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'contratos',
+                  style: TextStyle(
+                    height: 0.75,
+                    color: Colors.white,
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              'contratos',
-              style: TextStyle(
-                  height: 0.75,
-                  color: Colors.white,
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        Container(
-          child: const Icon(
-            Icons.keyboard_double_arrow_right,
-            size: 60,
-            color: Colors.white,
           ),
-        ),
-      ],
+          const Positioned(
+            right: 38.0,
+            child: Icon(
+              Icons.keyboard_arrow_right_rounded,
+              size: 60,
+              color: Colors.white,
+            ),
+          ),
+          const Positioned(
+            right: 26.0,
+            child: Padding(
+              padding: EdgeInsets.only(left: 24.0),
+              child: Icon(
+                Icons.keyboard_arrow_right_rounded,
+                size: 60,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

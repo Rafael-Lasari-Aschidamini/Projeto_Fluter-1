@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/http.dart';
+import 'package:shop/page/page_lista_classificacao.dart';
 import 'marca_logo.dart';
 
 class Login extends StatefulWidget {
@@ -145,7 +146,7 @@ class _LoginState extends State<Login> {
                       //       fontSize: 15,
                       //       backgroundColor: Colors.white,
                       //     ),
-                      //   ),
+                      //   ),PageListaClassificacao
                       //   icon: const Icon(
                       //     Icons.logout_outlined,
                       //     color: Colors.orange,
@@ -164,7 +165,14 @@ class _LoginState extends State<Login> {
                     child: Container(
                       width: 500,
                       child: TextButton.icon(
-                        onPressed: verificacaoLogin,
+                        onPressed: () {
+                          verificacaoLogin();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PageListaClassificacao()),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             fixedSize: const Size(120, 50),
