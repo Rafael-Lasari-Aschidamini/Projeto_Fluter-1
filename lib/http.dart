@@ -1,6 +1,11 @@
 class RotasHttp {
   RotasHttp._();
 
+  // 1- o tipo do que a função retorna
+  // 2- nome da função / declaração
+  // 3- parametros (entre parentesis)
+
+  //     1                    2         3
   static Map<String, dynamic> getLogin(String usuario, String senha) {
     // await Future.delayed(const Duration(seconds: 5));
 

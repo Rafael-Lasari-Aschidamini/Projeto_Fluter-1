@@ -15,6 +15,8 @@ class PageListaClassificacao extends StatefulWidget {
 class _PageListaClassificacaoState extends State<PageListaClassificacao> {
   List<Map<String, dynamic>> listaClassificacao = [];
 
+  onTapItem() {}
+
   verificacaoList() {}
 
   // abrir apos login ()
@@ -37,34 +39,39 @@ class _PageListaClassificacaoState extends State<PageListaClassificacao> {
       body: ListView.builder(
         itemCount: listaApi.length,
         itemBuilder: (BuildContext context, int posicaoItem) {
-          return Container(
-            height: 120,
-            width: double.infinity,
-            child: ListTile(
-              title: Text(
-                'Código: ${listaApi[posicaoItem]['codigo']}',
-                style: const TextStyle(fontSize: 20),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Vendedor: ${listaApi[posicaoItem]['vendedor']}',
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Text(
-                    'Produto: ${listaApi[posicaoItem]['produto']}',
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Text(
-                    'Destino: ${listaApi[posicaoItem]['destino']}',
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Text(
-                    'Embarque: ${listaApi[posicaoItem]['embarque']}',
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ],
+          return GestureDetector(
+            onTap: () {
+              print('Código: ${listaApi[posicaoItem]['codigo']}');
+            },
+            child: Container(
+              height: 120,
+              width: double.infinity,
+              child: ListTile(
+                title: Text(
+                  'Código: ${listaApi[posicaoItem]['codigo']}',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Vendedor: ${listaApi[posicaoItem]['vendedor']}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      'Produto: ${listaApi[posicaoItem]['produto']}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      'Destino: ${listaApi[posicaoItem]['destino']}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      'Embarque: ${listaApi[posicaoItem]['embarque']}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
