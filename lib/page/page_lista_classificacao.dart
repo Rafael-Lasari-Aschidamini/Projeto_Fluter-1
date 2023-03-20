@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:shop/page/card_classificacao.dart';
 import 'package:test/expect.dart';
 
+import '../componentes/menu.dart';
 import '../http.dart';
 
 class PageListaClassificacao extends StatefulWidget {
@@ -55,6 +56,7 @@ class _PageListaClassificacaoState extends State<PageListaClassificacao> {
           )
         ],
       ),
+      drawer: Menu(),
       body: ListView.builder(
         itemCount: listaClassificacao.length,
         padding: const EdgeInsets.symmetric(vertical: 4.0),

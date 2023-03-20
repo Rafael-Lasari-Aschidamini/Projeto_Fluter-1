@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop/componentes/aplicacao_rotas.dart';
+import 'package:shop/page/page_configuration.dart';
+import 'package:shop/page/page_lista_classificacao.dart';
 import 'login.dart';
 
 main() => runApp(const ExpensesApp());
@@ -43,6 +46,12 @@ class _ExpensesAppState extends State<ExpensesApp> {
               ),
             ),
       ),
+      routes: {
+        AplicacaoRotas.HOME: (ctx) => PageListaClassificacao(),
+        AplicacaoRotas.DESPESAS: (ctx) => PageListaClassificacao(),
+        AplicacaoRotas.IMPRESSORA: (ctx) => PageListaClassificacao(),
+        AplicacaoRotas.CONFIGURACAO: (ctx) => PageConfiguration(),
+      },
     );
   }
 }
