@@ -1,3 +1,48 @@
+var listaClassificacaoDB = [
+  {
+    'codigo': 80,
+    'vendedor': 'BAHIA',
+    'embarque': '',
+    'destino': '',
+    'produto': 'ADUBO',
+  },
+  {
+    'codigo': 79,
+    'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
+    'embarque': 'São Jose do Ouro/RS',
+    'destino': 'São Jose do Ouro',
+    'produto': 'ADUBO',
+  },
+  {
+    'codigo': 78,
+    'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
+    'embarque': '',
+    'destino': '',
+    'produto': 'Arroz',
+  },
+  {
+    'codigo': 74,
+    'vendedor': 'Alvaro Nunes Mela',
+    'embarque': '',
+    'destino': '',
+    'produto': 'ADUBO',
+  },
+  {
+    'codigo': 72,
+    'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
+    'embarque': '',
+    'destino': '',
+    'produto': 'Arroz',
+  },
+  {
+    'codigo': 71,
+    'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
+    'embarque': '',
+    'destino': '',
+    'produto': 'Arroz',
+  }
+];
+
 class RotasHttp {
   RotasHttp._();
 
@@ -27,50 +72,8 @@ class RotasHttp {
   }
 
   static Map<String, dynamic> getClassificacao() {
-    var listaClassificacao = [
-      {
-        'codigo': 80,
-        'vendedor': 'BAHIA',
-        'embarque': '',
-        'destino': '',
-        'produto': 'ADUBO',
-      },
-      {
-        'codigo': 79,
-        'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
-        'embarque': 'São Jose do Ouro/RS',
-        'destino': 'São Jose do Ouro',
-        'produto': 'ADUBO',
-      },
-      {
-        'codigo': 78,
-        'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
-        'embarque': '',
-        'destino': '',
-        'produto': 'Arroz',
-      },
-      {
-        'codigo': 74,
-        'vendedor': 'Alvaro Nunes Mela',
-        'embarque': '',
-        'destino': '',
-        'produto': 'ADUBO',
-      },
-      {
-        'codigo': 72,
-        'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
-        'embarque': '',
-        'destino': '',
-        'produto': 'Arroz',
-      },
-      {
-        'codigo': 71,
-        'vendedor': 'ATUA SISTEMAS DE INFORMAÇÃO',
-        'embarque': '',
-        'destino': '',
-        'produto': 'Arroz',
-      }
-    ];
+    var listaClassificacao = [...listaClassificacaoDB];
+    // listaClassificacaoDB.removeAt(0);
 
     return {
       'statusCode': 200,
