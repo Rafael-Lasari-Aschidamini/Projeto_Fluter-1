@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop/componentes/aplicacao_rotas.dart';
 import 'package:shop/page/page_configuration.dart';
 import 'package:shop/page/page_lista_classificacao.dart';
-import 'login.dart';
+import 'page/page_login.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -20,7 +20,7 @@ class _ExpensesAppState extends State<ExpensesApp> {
     return MaterialApp(
       home: ScaffoldMessenger(
         key: _scaffoldMessengerKey,
-        child: const Login(),
+        child: const PageLogin(),
       ),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey.shade100,
@@ -51,6 +51,7 @@ class _ExpensesAppState extends State<ExpensesApp> {
         AplicacaoRotas.DESPESAS: (ctx) => PageListaClassificacao(),
         AplicacaoRotas.IMPRESSORA: (ctx) => PageListaClassificacao(),
         AplicacaoRotas.CONFIGURACAO: (ctx) => PageConfiguration(),
+        AplicacaoRotas.SAIR: (ctx) => PageLogin(),
       },
     );
   }

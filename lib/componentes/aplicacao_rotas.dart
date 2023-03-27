@@ -3,4 +3,5 @@ class AplicacaoRotas {
   static const DESPESAS = '/DESPESAS';
   static const IMPRESSORA = '/IMPRESSORA';
   static const CONFIGURACAO = '/CONFIGURAÇÃO';
+  static const SAIR = '/SAIR';
 }

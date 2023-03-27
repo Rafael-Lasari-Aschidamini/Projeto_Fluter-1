@@ -11,21 +11,39 @@ import '../page/page_lista_classificacao.dart';
 class Menu extends StatelessWidget {
   const Menu({super.key});
 
-  Widget _opcaoMenu(IconData icon, String label, Function()? onTap) {
+  Widget opcaoMenu(IconData icon, String label, {Function()? onPressed}) {
+    // return Padding(
+    //   padding: const EdgeInsets.all(8.0),
+    //   child: Row(
+    //     children: [
+    //       Icon(
+    //         icon,
+    //       ),
+    //       SizedBox(
+    //         width: 16,
+    //       ),
+    //       Text(
+    //         label,
+    //         style: TextStyle(
+    //           fontSize: 16,
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    // );
     return ListTile(
       leading: Icon(
         icon,
-        size: 26,
+        size: 20,
       ),
       title: Text(
         label,
         style: TextStyle(
           fontFamily: 'OpenSans',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+          fontSize: 15,
         ),
       ),
-      onTap: onTap,
+      onTap: onPressed,
     );
   }
 
@@ -51,17 +69,18 @@ class Menu extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          _opcaoMenu(Icons.library_books_outlined, 'Classificação',
-              () => Navigator.of(context).pushNamed(AplicacaoRotas.HOME)),
-          _opcaoMenu(Icons.monetization_on_outlined, 'Despesas',
-              () => Navigator.of(context).pushNamed(AplicacaoRotas.DESPESAS)),
-          _opcaoMenu(Icons.print_outlined, 'Impressora',
-              () => Navigator.of(context).pushNamed(AplicacaoRotas.IMPRESSORA)),
-          _opcaoMenu(
-              Icons.settings_outlined,
-              'Configuração',
-              () =>
-                  Navigator.of(context).pushNamed(AplicacaoRotas.CONFIGURACAO)),
+          opcaoMenu(Icons.library_books_outlined, 'Classificação',
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(AplicacaoRotas.HOME)),
+          opcaoMenu(Icons.monetization_on_outlined, 'Despesas',
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(AplicacaoRotas.DESPESAS)),
+          opcaoMenu(Icons.print_outlined, 'Impressora',
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(AplicacaoRotas.IMPRESSORA)),
+          opcaoMenu(Icons.settings_outlined, 'Configuração',
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(AplicacaoRotas.CONFIGURACAO)),
         ],
       ),
     );

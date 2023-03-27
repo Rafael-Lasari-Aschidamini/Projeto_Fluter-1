@@ -3,6 +3,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
 
+import '../componentes/aplicacao_rotas.dart';
+import '../componentes/menu.dart';
+
 class PageConfiguration extends StatefulWidget {
   const PageConfiguration({super.key});
 
@@ -74,73 +77,78 @@ class _PageConfigurationState extends State<PageConfiguration> {
     //   ),
     // );
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Confuguração',
+        ),
+      ),
+      drawer: Menu(),
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(
-                  height: 24,
-                ),
-                Card(
-                  child: Column(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
-                        child: Text(
-                          'Mais Contratos',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold,
-                          ),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                height: 24,
+              ),
+              Card(
+                child: Column(
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+                      child: Text(
+                        'Mais Contratos',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Divider(),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
-                        child: Text(
-                          ('Versão Instalada'),
-                        ),
+                    ),
+                    Divider(),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
+                      child: Text(
+                        ('Versão Instalada'),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 4,
-                    vertical: 16,
-                  ),
-                  child: ButtonTheme(
-                    height: 60.0,
-                    child: Container(
-                      width: 500,
-                      child: TextButton.icon(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
-                            fixedSize: const Size(120, 50),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50))),
-                        label: const Text(
-                          "Sair",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                        icon: const Icon(
-                          Icons.logout_outlined,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                  vertical: 16,
+                ),
+                child: ButtonTheme(
+                  height: 60.0,
+                  child: Container(
+                    width: 500,
+                    child: TextButton.icon(
+                      onPressed: () => Navigator.of(context)
+                          .pushReplacementNamed(AplicacaoRotas.SAIR),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          fixedSize: const Size(120, 50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      label: const Text(
+                        "Sair",
+                        style: TextStyle(
                           color: Colors.white,
+                          fontSize: 15,
                         ),
+                      ),
+                      icon: const Icon(
+                        Icons.logout_outlined,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
