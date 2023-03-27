@@ -60,7 +60,7 @@ class _PageLoginState extends State<PageLogin> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.red,
-            content: Text('Usuário ou senha Incorreto'),
+            content: Text('Usuário ou Senha Incorreto'),
             behavior: SnackBarBehavior.floating,
             margin:
                 const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 16),
