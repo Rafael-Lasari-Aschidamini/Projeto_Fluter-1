@@ -24,7 +24,9 @@ class _PageLoginState extends State<PageLogin> {
         senhaAcesso == null;
   }
 
-  verificacaoLogin() {
+  verificacaoLogin(
+    int myStatus,
+  ) {
     if (loginAcesso.trim().isEmpty || senhaAcesso.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -35,26 +37,30 @@ class _PageLoginState extends State<PageLogin> {
         ),
       );
     } else {
-      Map<String, dynamic> mapRetorno =
-          RotasHttp.getLogin(loginAcesso, senhaAcesso);
-      int status = mapRetorno['statusCode'];
-      String testMessage = mapRetorno['message'];
-      if (status == 200) {
+      // Map<String, dynamic> mapRetorno =
+      //     RotasHttp.getLogin(loginAcesso, senhaAcesso);
+      // int status = mapRetorno['statusCode'];
+      // String testMessage = mapRetorno['message'];
+      if (myStatus == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.blue,
-            content: Text(testMessage),
+            content: Text('Bem Vindo'),
             behavior: SnackBarBehavior.floating,
             margin:
                 const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 16),
             // bottom: 770 bem em cima q1uando teclaso estiver fechado, caso teclado aberto da erro pois joga pra fora da tela
           ),
         );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PageListaClassificacao()),
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.red,
-            content: Text(testMessage),
+            content: Text('Usuário ou senha Incorreto'),
             behavior: SnackBarBehavior.floating,
             margin:
                 const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 16),
@@ -169,15 +175,11 @@ class _PageLoginState extends State<PageLogin> {
                         onPressed: () async {
                           var response = await MyHttpRouter.receberUsuarioLogin(
                               loginAcesso, senhaAcesso);
-                          print(response);
-                          return;
+                          int myStatus = response['status'];
 
-                          verificacaoLogin();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PageListaClassificacao()),
-                          );
+                          print(myStatus);
+
+                          verificacaoLogin(myStatus);
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
